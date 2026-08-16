@@ -1,0 +1,204 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* ── Profile slot ────────────────────────────────────── */
+.profile-slot {
+  position: sticky;
+  top: 100px;
+}
+
+.profile-slot__frame {
+  position: relative;
+  border: 2px solid var(--cyan);
+  background: var(--bg-card);
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.profile-slot__corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--bg-void);
+  z-index: 2;
+}
+.profile-slot__corner--tl { top: -1px; left: -1px; }
+.profile-slot__corner--tr { top: -1px; right: -1px; }
+.profile-slot__corner--bl { bottom: -1px; left: -1px; }
+.profile-slot__corner--br { bottom: -1px; right: -1px; }
+
+.profile-slot__screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--bg-deep);
+}
+
+.profile-slot__scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,229,255,0.03) 3px,
+    rgba(0,229,255,0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.profile-slot__content {
+  text-align: center;
+  padding: var(--space-5);
+  position: relative;
+  z-index: 1;
+}
+
+.profile-slot__icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  filter: grayscale(0.4);
+}
+
+.profile-slot__label {
+  font-family: var(--font-pixel);
+  font-size: 0.4rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-2);
+}
+
+.profile-slot__sub {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--red);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-3);
+}
+
+.profile-slot__hint {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.profile-slot__caption {
+  margin-top: var(--space-3);
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--gray-light);
+  letter-spacing: 0.08em;
+  line-height: 2;
+}
+
+.profile-slot__caption span { color: var(--white-dim); }
+
+/* ── Easter egg ──────────────────────────────────────── */
+.about__easter {
+  margin-top: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0.35;
+  font-size: 0.85rem;
+  cursor: default;
+  transition: opacity var(--dur-normal);
+}
+
+.about__easter:hover { opacity: 1; }
+
+.about__easter-text {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
+  color: var(--green);
+  letter-spacing: 0.08em;
+}
+
+/* ── Text side ───────────────────────────────────────── */
+.about__bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--dur-slow), transform var(--dur-slow);
+}
+
+.about__bio--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about__bio p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.about__bio strong { color: var(--white); font-style: normal; }
+.about__bio em { color: var(--cyan); font-style: normal; }
+
+/* ── Stats ───────────────────────────────────────────── */
+.about__stats {
+  display: flex;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.about__stat {
+  border: 2px solid var(--gray);
+  padding: var(--space-3) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  transition: border-color var(--dur-normal);
+}
+
+.about__stat:hover { border-color: var(--cyan); }
+
+.about__stat-val {
+  font-family: var(--font-pixel);
+  font-size: 0.4rem;
+  color: var(--gray-light);
+  letter-spacing: 0.08em;
+}
+
+.about__stat-label {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+}
+
+/* ── Location ────────────────────────────────────────── */
+.about__location {
+  font-family: var(--font-pixel);
+  font-size: 0.4rem;
+  color: var(--gray-light);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 860px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-slot {
+    position: static;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+}

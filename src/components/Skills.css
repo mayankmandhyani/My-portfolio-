@@ -1,0 +1,174 @@
+.skills__terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-elevated);
+  border: 2px solid var(--gray);
+  border-bottom: none;
+  margin-bottom: 0;
+  font-family: var(--font-pixel);
+  font-size: 0.4rem;
+  color: var(--gray-light);
+  letter-spacing: 0.1em;
+}
+
+.skills__tb-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 0;
+}
+
+.skills__tb-dot--r { background: var(--red); }
+.skills__tb-dot--y { background: var(--yellow); }
+.skills__tb-dot--g { background: var(--green); }
+
+.skills__tb-title { flex: 1; text-align: center; }
+
+.skills__note {
+  font-size: 0.85rem;
+  color: var(--gray-light);
+  margin-bottom: var(--space-7);
+  max-width: 480px;
+}
+
+/* ── Grid ────────────────────────────────────────────── */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+/* ── Card ────────────────────────────────────────────── */
+.skill-card {
+  border: 2px solid var(--gray);
+  background: var(--bg-card);
+  padding: var(--space-5);
+  transition:
+    border-color var(--dur-normal),
+    box-shadow var(--dur-normal),
+    transform var(--dur-normal);
+  opacity: 0;
+  transform: translateY(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--skill-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow);
+}
+
+.skill-card--visible {
+  animation: cardIn var(--dur-slow) forwards;
+}
+
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skill-card:hover {
+  border-color: var(--skill-color);
+  box-shadow: 0 0 16px rgba(0,229,255,0.1);
+  transform: translateY(-3px);
+}
+
+.skill-card:hover::before {
+  transform: scaleX(1);
+}
+
+.skill-card__top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.skill-card__icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.skill-card__name {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-1);
+}
+
+.skill-card__level {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--skill-color);
+  letter-spacing: 0.1em;
+}
+
+.skill-card__desc {
+  font-size: 0.8rem;
+  color: var(--white-dim);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+/* ── Pixel meter ─────────────────────────────────────── */
+.skill-card__meter {
+  display: flex;
+  gap: 4px;
+}
+
+.skill-card__pip {
+  width: 20px;
+  height: 8px;
+  background: var(--gray);
+  display: block;
+  transition: background var(--dur-normal);
+}
+
+.skill-card__pip--filled {
+  background: var(--skill-color);
+  box-shadow: 0 0 6px var(--skill-color);
+}
+
+/* ── Legend ──────────────────────────────────────────── */
+.skills__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  border-top: 1px solid var(--gray);
+  padding-top: var(--space-4);
+}
+
+.skills__legend-label {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--gray-light);
+  letter-spacing: 0.08em;
+}
+
+.skills__legend-item {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--white-dim);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 500px) {
+  .skills__grid { grid-template-columns: 1fr; }
+  .skills__legend { display: none; }
+}
