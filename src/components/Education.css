@@ -1,0 +1,173 @@
+.education {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.education__heading {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--clr-pixel-white);
+  margin: 8px 0 32px;
+}
+
+/* Terminal */
+.education__terminal {
+  border: 2px solid var(--clr-green-dim);
+  background: rgba(0, 10, 5, 0.8);
+  margin-bottom: 40px;
+}
+
+.edu-terminal-body {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.edu-prompt {
+  color: var(--clr-green);
+  line-height: 1.8;
+}
+
+.edu-prompt--ok {
+  color: var(--clr-cyan);
+}
+
+.edu-prompt--dim {
+  color: var(--clr-muted);
+}
+
+.edu-spacer {
+  height: 12px;
+}
+
+.edu-cursor {
+  color: var(--clr-green);
+  animation: blink 1s infinite;
+  margin-top: 4px;
+}
+
+/* Records */
+.edu-record {
+  border: 1px solid rgba(57, 255, 120, 0.15);
+  background: rgba(57, 255, 120, 0.03);
+  padding: 14px 16px;
+  margin: 8px 0;
+}
+
+.edu-record__line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.edu-record__index {
+  color: var(--clr-muted);
+  font-size: 0.7rem;
+}
+
+.edu-record__institution {
+  color: var(--clr-pixel-white);
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.edu-record__detail {
+  display: flex;
+  gap: 32px;
+  padding-left: 40px;
+}
+
+.edu-key {
+  color: var(--clr-muted);
+  font-size: 0.65rem;
+  margin-right: 8px;
+  letter-spacing: 0.1em;
+}
+
+.edu-val {
+  color: var(--clr-dim);
+  font-size: 0.85rem;
+}
+
+.edu-val--highlight {
+  color: var(--clr-green);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Achievements */
+.edu-achievements__header {
+  margin-bottom: 16px;
+}
+
+.edu-achievements__card {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid rgba(255, 230, 0, 0.2);
+  background: rgba(255, 230, 0, 0.03);
+}
+
+.ach-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.ach-content { flex: 1; }
+
+.ach-title {
+  font-family: var(--font-pixel);
+  font-size: 1.4rem;
+  color: var(--clr-muted);
+  margin-bottom: 4px;
+}
+
+.ach-status {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--clr-orange);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  animation: blink 2s infinite;
+}
+
+.ach-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ach-bar {
+  flex: 1;
+  height: 8px;
+  border: 1px solid rgba(255, 230, 0, 0.2);
+  background: rgba(255, 230, 0, 0.05);
+}
+
+.ach-bar__fill {
+  height: 100%;
+  background: var(--clr-yellow);
+  opacity: 0.6;
+}
+
+.ach-pct {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--clr-yellow);
+  opacity: 0.7;
+}
+
+.ach-desc {
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+  max-width: 100%;
+  line-height: 1.6;
+}
+
+@media (max-width: 500px) {
+  .edu-record__detail { padding-left: 0; flex-direction: column; gap: 6px; }
+  .edu-achievements__card { flex-direction: column; }
+}
