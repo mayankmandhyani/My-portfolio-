@@ -1,0 +1,254 @@
+.eduSection {
+  position: relative;
+  padding: 80px 0;
+}
+
+/* Terminal header */
+.terminalHeader {
+  background: var(--space-deep);
+  border: 1px solid var(--space-border);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.thBar {
+  background: var(--space-mid);
+  border-bottom: 1px solid var(--space-border);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thDot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+}
+
+.thTitle {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--pixel-ghost);
+  margin-left: 8px;
+  letter-spacing: 0.1em;
+}
+
+.thBody {
+  padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.thLine {
+  font-family: var(--font-pixel);
+  font-size: 0.42rem;
+  color: var(--pixel-dim);
+  display: flex;
+  gap: 10px;
+  letter-spacing: 0.08em;
+}
+
+.thPrompt {
+  color: var(--green-pixel);
+  flex-shrink: 0;
+}
+
+.thGreen {
+  color: var(--green-pixel);
+}
+
+/* Records */
+.records {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.record {
+  background: var(--space-panel);
+  border: 2px solid var(--space-border);
+  display: flex;
+  align-items: stretch;
+  transition: border-color var(--trans-mid), box-shadow var(--trans-mid);
+}
+
+.record:hover {
+  border-color: var(--space-muted);
+}
+
+.recordHighlight {
+  border-color: var(--cyan-dark);
+}
+
+.recordHighlight:hover {
+  border-color: var(--cyan-mid);
+  box-shadow: 0 0 16px var(--cyan-glow);
+}
+
+/* Left side */
+.recordLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px;
+  border-right: 1px solid var(--space-border);
+}
+
+.recordIndex {
+  font-family: var(--font-pixel);
+  font-size: 0.42rem;
+  color: var(--pixel-ghost);
+  letter-spacing: 0.1em;
+}
+
+.recordLine {
+  flex: 1;
+  width: 1px;
+  background: var(--space-border);
+  margin-top: 8px;
+}
+
+/* Content */
+.recordContent {
+  padding: 20px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recordHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.recordLevel {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--pixel-white);
+  letter-spacing: 0.05em;
+}
+
+.recordStatus {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
+  color: var(--pixel-ghost);
+  border: 1px solid var(--space-border);
+  padding: 3px 7px;
+  letter-spacing: 0.1em;
+}
+
+.statusHighlight {
+  color: var(--green-pixel);
+  border-color: var(--green-dark);
+}
+
+.recordInstitution {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--pixel-dim);
+}
+
+.recordResult {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.resultLabel {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
+  color: var(--pixel-ghost);
+  letter-spacing: 0.1em;
+}
+
+.resultValue {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--pixel-dim);
+}
+
+.resultHighlight {
+  color: var(--cyan-bright);
+  text-shadow: 0 0 8px var(--cyan-dark);
+}
+
+/* Achievements */
+.achievementsBlock {
+  background: var(--space-deep);
+  border: 1px solid var(--space-border);
+  border-left: 3px solid var(--amber-mid);
+  padding: 24px;
+}
+
+.achHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.achIcon {
+  font-size: 1rem;
+  filter: grayscale(0.6);
+}
+
+.achTitle {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: var(--amber-mid);
+  letter-spacing: 0.15em;
+}
+
+.achBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.achMessage {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: var(--pixel-dim);
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+
+.loadingBar {
+  width: 200px;
+  height: 8px;
+  background: var(--space-mid);
+  border: 1px solid var(--space-border);
+  overflow: hidden;
+}
+
+.loadingFill {
+  height: 100%;
+  width: 15%;
+  background: var(--amber-mid);
+  animation: loadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% { width: 12%; }
+  50% { width: 18%; }
+}
+
+.achSubtext {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--pixel-ghost);
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .recordHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

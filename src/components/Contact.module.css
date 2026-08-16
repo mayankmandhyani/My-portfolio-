@@ -1,0 +1,273 @@
+.contactSection {
+  position: relative;
+  padding: 80px 0 60px;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Message panel */
+.messagePanel {
+  background: var(--space-panel);
+  border: 2px solid var(--space-border);
+  overflow: hidden;
+  height: 100%;
+}
+
+.panelHeader {
+  background: var(--space-mid);
+  border-bottom: 1px solid var(--space-border);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.panelDot {
+  width: 8px;
+  height: 8px;
+  background: var(--red-pixel);
+  display: inline-block;
+  opacity: 0.7;
+}
+
+.panelTitle {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--pixel-ghost);
+  margin-left: 8px;
+  letter-spacing: 0.1em;
+}
+
+.panelBody {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Transmission animation */
+.transmission {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+.txRing {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--cyan-dark);
+  border-radius: 50%;
+  animation: ringExpand 2s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes ringExpand {
+  0% { transform: scale(0.3); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.txCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--cyan-bright);
+  text-shadow: 0 0 10px var(--cyan-bright);
+}
+
+.contactHeadline {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--pixel-white);
+  line-height: 1.6;
+}
+
+.contactText {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--pixel-dim);
+  line-height: 1.75;
+}
+
+.emailBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+  flex-wrap: wrap;
+}
+
+.emailLink {
+  font-family: var(--font-pixel);
+  font-size: 0.48rem;
+  color: var(--cyan-bright);
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-decoration-color: var(--cyan-dark);
+  text-underline-offset: 4px;
+  transition: color var(--trans-fast);
+}
+
+.emailLink:hover {
+  color: #fff;
+}
+
+.copyBtn {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--pixel-ghost);
+  border: 1px solid var(--space-border);
+  background: none;
+  padding: 5px 8px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: color var(--trans-fast), border-color var(--trans-fast);
+}
+
+.copyBtn:hover {
+  color: var(--green-pixel);
+  border-color: var(--green-dark);
+}
+
+/* Links panel */
+.linksPanel {
+  background: var(--space-panel);
+  border: 2px solid var(--space-border);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.linksPanelTitle {
+  font-family: var(--font-pixel);
+  font-size: 0.42rem;
+  color: var(--pixel-ghost);
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--space-border);
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.linkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid transparent;
+  transition: border-color var(--trans-fast), background var(--trans-fast);
+}
+
+.linkRow:hover {
+  border-color: var(--space-border);
+  background: var(--space-mid);
+}
+
+.linkRowUnavailable {
+  opacity: 0.5;
+}
+
+.linkLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.linkIcon {
+  font-size: 1rem;
+  color: var(--pixel-ghost);
+  width: 20px;
+  text-align: center;
+}
+
+.linkInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.linkLabel {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--pixel-dim);
+  letter-spacing: 0.1em;
+}
+
+.linkValue {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--pixel-ghost);
+}
+
+.linkRight {
+  flex-shrink: 0;
+}
+
+.linkBtn {
+  font-size: 0.55rem !important;
+  padding: 6px 10px !important;
+}
+
+.linkSoon {
+  font-family: var(--font-pixel);
+  font-size: 0.32rem;
+  color: var(--space-muted);
+  letter-spacing: 0.1em;
+  border: 1px dashed var(--space-border);
+  padding: 4px 6px;
+}
+
+/* Location */
+.locationCard {
+  background: var(--space-deep);
+  border: 1px solid var(--space-border);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.locationIcon {
+  font-size: 1.2rem;
+  color: var(--cyan-mid);
+  text-shadow: 0 0 8px var(--cyan-dark);
+  flex-shrink: 0;
+}
+
+.locationLabel {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
+  color: var(--pixel-ghost);
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.locationValue {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--pixel-dim);
+}
+
+@media (max-width: 860px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .panelBody {
+    padding: 20px;
+  }
+}
