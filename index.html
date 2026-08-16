@@ -1,49 +1,1299 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mayank Madhyani</title>
+<meta name="description" content="Mayank Madhyani — Vibe Coder, Digital Marketer, Class 12 graduate from Surat. Building weird things under ASTRA Studio."/>
+<meta name="author" content="Mayank Madhyani"/>
+<meta name="robots" content="index,follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Mayank Madhyani"/>
+<meta property="og:description" content="Still booting. Building weird things in the meantime."/>
+<meta property="og:locale" content="en_IN"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Mayank Madhyani"/>
+<meta name="twitter:description" content="Still booting. Building weird things in the meantime."/>
+<meta name="theme-color" content="#05050f"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#05050f;--bg2:#080818;--bg3:#0d0d2b;
+  --cyan:#00e5ff;--cyan2:#00b8cc;--green:#39ff14;
+  --orange:#ff8c00;--yellow:#ffd700;--purple:#bf5fff;
+  --red:#ff3c3c;--white:#e8eaf6;--gray:#4a5568;
+  --font-px:'Press Start 2P','Courier New',monospace;
+  --font-body:'Space Mono','Courier New',monospace;
+  --glow-c:0 0 8px #00e5ff,0 0 20px rgba(0,229,255,.4);
+  --glow-g:0 0 8px #39ff14,0 0 20px rgba(57,255,20,.3);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-    <!-- SEO -->
-    <title>Mayank Madhyani | ASTRA Studio</title>
-    <meta
-      name="description"
-      content="Portfolio of Mayank Madhyani — Vibe Coder, Digital Marketer, and recent Class 12 graduate from Surat, India. Building weird things under the ASTRA Studio banner."
-    />
-    <meta name="author" content="Mayank Madhyani" />
-    <meta name="robots" content="index, follow" />
+body{
+  background:var(--bg);color:var(--white);
+  font-family:var(--font-body);line-height:1.7;overflow-x:hidden;
+  cursor:none;
+}
+body.mobile-cursor{cursor:auto}
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Mayank Madhyani | ASTRA Studio" />
-    <meta
-      property="og:description"
-      content="Still booting. Building weird things in the meantime. — Mayank Madhyani, ASTRA Studio."
-    />
-    <meta property="og:locale" content="en_IN" />
+/* CUSTOM CURSOR */
+#cursor{
+  position:fixed;width:16px;height:16px;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);transition:opacity .2s;
+  image-rendering:pixelated;
+}
+#cursor svg{width:100%;height:100%}
+#cursor-trail{position:fixed;pointer-events:none;z-index:9998}
+.trail-dot{
+  position:absolute;width:4px;height:4px;background:var(--cyan);
+  pointer-events:none;transform:translate(-50%,-50%);
+  transition:opacity .4s;image-rendering:pixelated;
+}
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mayank Madhyani | ASTRA Studio" />
-    <meta
-      name="twitter:description"
-      content="Still booting. Building weird things in the meantime."
-    />
+/* SKIP LINK */
+.skip{
+  position:absolute;top:-100%;left:1rem;
+  background:var(--cyan);color:var(--bg);
+  padding:.4rem 1rem;font-family:var(--font-px);font-size:.45rem;
+  z-index:9999;transition:top .2s;
+}
+.skip:focus{top:.5rem}
 
-    <!-- Theme -->
-    <meta name="theme-color" content="#05050f" />
-    <meta name="color-scheme" content="dark" />
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(5,5,15,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(0,229,255,.15);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 2rem;
+}
+.nav-logo{
+  font-family:var(--font-px);font-size:.55rem;color:var(--cyan);
+  text-decoration:none;letter-spacing:.1em;
+}
+.nav-logo span{color:var(--white);opacity:.5;font-size:.4rem;display:block;margin-top:.2rem}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{
+  font-family:var(--font-px);font-size:.4rem;color:var(--gray);
+  text-decoration:none;letter-spacing:.08em;transition:color .2s;
+}
+.nav-links a:hover{color:var(--cyan)}
+.hamburger{display:none;background:none;border:none;cursor:none;flex-direction:column;gap:5px;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cyan)}
+@media(max-width:640px){
+  .nav-links{
+    display:none;position:fixed;top:52px;right:0;left:0;
+    flex-direction:column;background:var(--bg2);
+    padding:1.5rem 2rem;gap:1.5rem;border-bottom:1px solid rgba(0,229,255,.15);
+  }
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+}
 
-    <!-- Preconnect fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  </head>
-  <body>
-    <!-- Skip link for keyboard nav -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+/* CANVAS */
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+/* SECTIONS */
+section{padding:5rem 0;position:relative;z-index:1}
+.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
+
+/* SECTION LABELS */
+.sec-label{
+  font-family:var(--font-px);font-size:.4rem;color:var(--cyan);
+  letter-spacing:.15em;text-transform:uppercase;
+  display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;
+}
+.sec-label::before{content:'▶';font-size:.5em}
+.sec-title{
+  font-family:var(--font-px);
+  font-size:clamp(.8rem,2.5vw,1.3rem);
+  color:var(--white);margin-bottom:2.5rem;
+}
+
+/* ═══════════════════════════════ HERO ═══════════════════════════════ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  justify-content:center;padding-top:4rem;
+  position:relative;overflow:hidden;
+}
+.hero-inner{
+  display:grid;grid-template-columns:1fr auto;
+  gap:3rem;align-items:center;width:100%;max-width:1100px;
+  padding:0 2rem;
+}
+.hero-text{}
+.hero-pre{
+  font-family:var(--font-px);font-size:.4rem;color:var(--cyan);
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.hero-pre::before{content:'>';color:var(--green)}
+.hero-name{
+  font-family:var(--font-px);
+  font-size:clamp(1.4rem,5vw,3rem);
+  color:var(--white);line-height:1.2;margin-bottom:.75rem;
+  text-shadow:var(--glow-c);letter-spacing:.04em;
+}
+.hero-brand{
+  font-family:var(--font-px);font-size:clamp(.45rem,1.5vw,.7rem);
+  color:var(--cyan);opacity:.7;letter-spacing:.2em;
+  margin-bottom:1.5rem;
+}
+.hero-tagline{
+  font-size:.9rem;color:rgba(232,234,246,.6);
+  margin-bottom:2rem;min-height:1.5rem;
+}
+#cursor-tag::after{content:'_';animation:blink 1s step-end infinite}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--font-px);font-size:.45rem;
+  padding:.7rem 1.4rem;border:2px solid var(--cyan);
+  background:transparent;color:var(--cyan);
+  text-decoration:none;letter-spacing:.05em;
+  transition:background .2s,color .2s,box-shadow .2s,transform .15s;
+  position:relative;cursor:none;
+}
+.btn::before{content:'';position:absolute;inset:2px;border:1px solid rgba(0,229,255,.12)}
+.btn:hover{background:var(--cyan);color:var(--bg);box-shadow:var(--glow-c);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--gray);color:var(--gray)}
+.btn-ghost:hover{background:var(--gray);color:var(--bg);box-shadow:none}
+
+/* PIXEL CHARACTER */
+.hero-char{
+  width:180px;flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;gap:.75rem;
+}
+.char-sprite{
+  width:96px;height:128px;image-rendering:pixelated;
+  animation:char-idle 3s ease-in-out infinite;
+  position:relative;
+}
+@keyframes char-idle{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+.char-label{
+  font-family:var(--font-px);font-size:.35rem;color:var(--cyan);
+  letter-spacing:.12em;text-align:center;
+  animation:blink 2s step-end infinite;
+}
+.char-aura{
+  position:absolute;inset:-8px;
+  background:radial-gradient(ellipse,rgba(0,229,255,.08) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+@media(max-width:640px){
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-char{margin:0 auto}
+  .hero-btns{justify-content:center}
+}
+
+/* ═══════════════════════════════ ABOUT ═════════════════════════════ */
+#about .about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;align-items:start;
+}
+.about-card{
+  border:1px solid rgba(0,229,255,.2);padding:1.5rem;
+  background:rgba(0,229,255,.02);
+}
+.about-card h3{
+  font-family:var(--font-px);font-size:.55rem;color:var(--cyan);
+  margin-bottom:1rem;letter-spacing:.05em;
+}
+.about-card p{font-size:.85rem;color:rgba(232,234,246,.65);margin-bottom:.75rem}
+.about-card p:last-child{margin-bottom:0}
+.likes-list{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.likes-list li{
+  font-family:var(--font-px);font-size:.35rem;
+  padding:.3rem .6rem;border:1px solid rgba(0,229,255,.3);
+  color:var(--cyan);letter-spacing:.05em;
+}
+@media(max-width:640px){#about .about-grid{grid-template-columns:1fr}}
+
+/* PROFILE PANEL */
+.profile-panel{
+  border:2px solid var(--cyan);padding:1.5rem;
+  background:rgba(0,229,255,.03);position:relative;
+}
+.profile-panel::before{
+  content:'MAYANK.EXE';position:absolute;top:-10px;left:12px;
+  font-family:var(--font-px);font-size:.35rem;
+  background:var(--bg);color:var(--cyan);padding:0 .5rem;
+}
+.profile-panel::after{
+  content:'▲';position:absolute;bottom:8px;right:12px;
+  font-size:.4rem;color:rgba(0,229,255,.3);
+}
+.stat-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.4rem 0;border-bottom:1px solid rgba(0,229,255,.08);
+  font-family:var(--font-px);font-size:.38rem;
+}
+.stat-row:last-child{border-bottom:none}
+.stat-key{color:var(--gray)}
+.stat-val{color:var(--white)}
+.stat-val.green{color:var(--green)}
+.stat-val.cyan{color:var(--cyan)}
+.stat-val.yellow{color:var(--yellow)}
+.stat-val.orange{color:var(--orange)}
+.hp-bar{
+  width:80px;height:8px;border:1px solid var(--cyan);
+  background:rgba(0,229,255,.1);position:relative;overflow:hidden;
+}
+.hp-fill{height:100%;background:var(--cyan);transition:width 1s ease}
+
+/* ═══════════════════════════════ TERMINAL ════════════════════════════ */
+#terminal-section{padding:3rem 0}
+.terminal-wrap{
+  border:2px solid var(--green);background:rgba(0,0,0,.7);
+  font-family:var(--font-px);overflow:hidden;max-width:700px;margin:0 auto;
+}
+.terminal-bar{
+  background:rgba(57,255,20,.1);padding:.6rem 1rem;
+  display:flex;align-items:center;gap:.5rem;
+  border-bottom:1px solid rgba(57,255,20,.3);
+}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-red{background:#ff5f57}.t-yellow{background:#ffbd2e}.t-green{background:#28ca41}
+.t-title{
+  flex:1;text-align:center;font-size:.38rem;
+  color:var(--green);letter-spacing:.1em;
+}
+.terminal-body{padding:1rem 1.5rem;min-height:280px;max-height:380px;overflow-y:auto}
+.t-line{font-size:.4rem;line-height:2;word-break:break-all}
+.t-prompt{color:var(--green)}
+.t-cmd{color:var(--white)}
+.t-out{color:rgba(232,234,246,.6);margin-left:1rem}
+.t-out.cyan{color:var(--cyan)}
+.t-out.yellow{color:var(--yellow)}
+.t-out.orange{color:var(--orange)}
+.t-out.green{color:var(--green)}
+.t-input-row{
+  display:flex;align-items:center;gap:.5rem;
+  padding:.75rem 1.5rem;border-top:1px solid rgba(57,255,20,.2);
+}
+.t-prompt-static{font-family:var(--font-px);font-size:.4rem;color:var(--green);white-space:nowrap}
+#t-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:var(--font-px);font-size:.4rem;color:var(--white);
+  caret-color:var(--green);cursor:none;
+}
+.t-hint{
+  font-family:var(--font-px);font-size:.32rem;color:var(--gray);
+  text-align:center;padding:.5rem;letter-spacing:.05em;
+}
+
+/* ═══════════════════════════════ SKILLS ═════════════════════════════ */
+.skills-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1.25rem;
+}
+.skill-card{
+  border:1px solid rgba(0,229,255,.18);padding:1.25rem;
+  background:rgba(0,229,255,.02);
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+}
+.skill-card:hover{
+  border-color:var(--cyan);transform:translateY(-3px);
+  box-shadow:0 0 16px rgba(0,229,255,.12);
+}
+.skill-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.skill-icon{font-size:1.4rem}
+.skill-cat{font-family:var(--font-px);font-size:.45rem;color:var(--white);letter-spacing:.04em}
+.skill-desc{font-size:.8rem;color:rgba(232,234,246,.55);margin-bottom:.75rem}
+.skill-meta{display:flex;align-items:center;justify-content:space-between}
+.skill-level{font-family:var(--font-px);font-size:.32rem;letter-spacing:.05em}
+.pips{display:flex;gap:3px}
+.pip{width:10px;height:10px;border:1px solid currentColor;opacity:.25;image-rendering:pixelated}
+.pip.on{opacity:1}
+
+/* ═══════════════════════════════ PROJECTS ════════════════════════════ */
+.project-card{
+  border:2px solid rgba(0,229,255,.25);padding:2rem;
+  background:rgba(0,229,255,.02);
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;
+}
+.project-badge{
+  font-family:var(--font-px);font-size:.35rem;
+  padding:.3rem .7rem;border:1px solid;letter-spacing:.08em;
+  text-transform:uppercase;display:inline-block;margin-bottom:1rem;
+}
+.project-name{
+  font-family:var(--font-px);font-size:clamp(.7rem,2vw,.9rem);
+  color:var(--white);margin-bottom:.75rem;
+}
+.project-desc{font-size:.85rem;color:rgba(232,234,246,.6);margin-bottom:1.25rem}
+.project-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.tag{
+  font-family:var(--font-px);font-size:.35rem;
+  padding:.25rem .55rem;border:1px solid rgba(0,229,255,.3);
+  color:var(--cyan);letter-spacing:.04em;
+}
+.project-links{display:flex;gap:.75rem;flex-wrap:wrap}
+.project-link{
+  font-family:var(--font-px);font-size:.38rem;
+  padding:.45rem .9rem;border:1px solid;
+  text-decoration:none;letter-spacing:.05em;
+  transition:background .2s,color .2s;cursor:none;
+}
+.project-link:hover{background:currentColor;filter:invert(1)}
+.project-char{
+  width:80px;display:flex;flex-direction:column;align-items:center;
+  gap:.5rem;flex-shrink:0;
+}
+.project-char .char-sprite{width:64px;height:80px}
+@media(max-width:640px){
+  .project-card{grid-template-columns:1fr}
+  .project-char{display:none}
+}
+
+/* CURRENTLY BUILDING */
+.building-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.building-card{
+  border:1px solid rgba(57,255,20,.2);padding:1rem;
+  background:rgba(57,255,20,.02);
+}
+.building-card .b-label{
+  font-family:var(--font-px);font-size:.32rem;color:var(--green);
+  letter-spacing:.1em;margin-bottom:.4rem;
+  display:flex;align-items:center;gap:.4rem;
+}
+.building-card .b-label::before{
+  content:'';width:6px;height:6px;background:var(--green);
+  border-radius:50%;animation:pulse-green 1.5s ease infinite;
+}
+@keyframes pulse-green{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(57,255,20,.4)}50%{opacity:.6;box-shadow:0 0 0 6px rgba(57,255,20,0)}}
+.building-card .b-name{font-family:var(--font-px);font-size:.45rem;color:var(--white);margin-bottom:.4rem}
+.building-card .b-desc{font-size:.78rem;color:rgba(232,234,246,.5)}
+
+/* ═══════════════════════════════ EDUCATION ══════════════════════════ */
+.edu-terminal{
+  border:1px solid rgba(0,229,255,.25);background:rgba(0,0,0,.4);
+  font-family:var(--font-px);overflow:hidden;
+}
+.edu-terminal-bar{
+  background:rgba(0,229,255,.06);padding:.5rem 1rem;
+  display:flex;gap:.5rem;align-items:center;
+  border-bottom:1px solid rgba(0,229,255,.15);
+  font-size:.38rem;color:var(--cyan);
+}
+.edu-body{padding:1.5rem}
+.edu-entry{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(0,229,255,.08)}
+.edu-entry:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.edu-year{font-size:.35rem;color:var(--cyan);margin-bottom:.4rem}
+.edu-school{font-size:.55rem;color:var(--white);margin-bottom:.25rem}
+.edu-detail{font-size:.78rem;color:rgba(232,234,246,.55)}
+.edu-score{
+  display:inline-block;font-family:var(--font-px);font-size:.4rem;
+  padding:.2rem .5rem;border:1px solid var(--yellow);
+  color:var(--yellow);margin-top:.4rem;
+}
+.achievement-bar{
+  margin-top:2rem;padding:1rem;
+  border:1px solid rgba(255,215,0,.2);
+  display:flex;align-items:center;gap:1rem;
+  font-family:var(--font-px);font-size:.38rem;
+}
+.achievement-label{color:var(--yellow);white-space:nowrap}
+.ach-progress{flex:1;height:6px;border:1px solid rgba(255,215,0,.3);background:rgba(255,215,0,.05);overflow:hidden}
+.ach-fill{height:100%;width:8%;background:var(--yellow);animation:fill-anim 3s ease forwards 1s}
+@keyframes fill-anim{from{width:0}to{width:8%}}
+.ach-text{color:rgba(232,234,246,.4);white-space:nowrap}
+
+/* ═══════════════════════════════ CONTACT ════════════════════════════ */
+#contact .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.signal-box{
+  border:2px solid rgba(0,229,255,.3);padding:2rem;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;gap:1.5rem;
+}
+.signal-rings{position:relative;width:120px;height:120px;flex-shrink:0}
+.signal-rings::before,.signal-rings::after,.signal-inner{
+  position:absolute;border-radius:50%;border:1px solid rgba(0,229,255,.4);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.signal-rings::before{width:120px;height:120px;animation:sonar 2s ease infinite}
+.signal-rings::after{width:80px;height:80px;animation:sonar 2s ease infinite .5s}
+.signal-inner{
+  width:40px;height:40px;background:rgba(0,229,255,.1);
+  border-color:var(--cyan);display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;animation:sonar 2s ease infinite 1s;
+}
+@keyframes sonar{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
+.signal-text{font-family:var(--font-px);font-size:.38rem;color:var(--cyan);text-align:center;line-height:2}
+.contact-links{display:flex;flex-direction:column;gap:1rem}
+.contact-link{
+  display:flex;align-items:center;gap:1rem;
+  border:1px solid rgba(0,229,255,.2);padding:1rem;
+  text-decoration:none;color:var(--white);
+  transition:border-color .2s,background .2s;cursor:none;
+}
+.contact-link:hover{border-color:var(--cyan);background:rgba(0,229,255,.04)}
+.contact-link .c-icon{font-size:1.25rem;flex-shrink:0}
+.contact-link .c-info{}
+.contact-link .c-label{font-family:var(--font-px);font-size:.35rem;color:var(--cyan);display:block}
+.contact-link .c-val{font-size:.82rem;color:rgba(232,234,246,.7)}
+@media(max-width:640px){#contact .contact-grid{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════ FOOTER ════════════════════════════ */
+footer{
+  border-top:1px solid rgba(0,229,255,.1);padding:2rem;
+  text-align:center;font-family:var(--font-px);position:relative;z-index:1;
+}
+footer p{font-size:.35rem;color:var(--gray);margin-bottom:.5rem}
+footer p span{color:var(--cyan)}
+.footer-char{
+  display:flex;justify-content:center;margin-bottom:1rem;
+}
+.footer-char .char-sprite{width:48px;height:64px;opacity:.5}
+
+/* ═══════════════════════════════ UTILITIES ══════════════════════════ */
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes glitch{
+  0%{transform:translate(0)}20%{transform:translate(-2px,2px)}
+  40%{transform:translate(2px,-2px)}60%{transform:translate(-1px,1px)}
+  80%{transform:translate(1px,-1px)}100%{transform:translate(0)}
+}
+@keyframes reveal{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0}
+.revealed{animation:reveal .5s ease forwards}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--cyan2)}
+::selection{background:rgba(0,229,255,.2)}
+
+/* EASTER EGGS */
+#konami-msg{
+  display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  z-index:9999;background:var(--bg2);border:2px solid var(--yellow);
+  padding:2rem;font-family:var(--font-px);font-size:.5rem;color:var(--yellow);
+  text-align:center;line-height:2;max-width:340px;
+}
+#konami-msg.show{display:block;animation:glitch .3s ease 3}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to main content</a>
+
+<!-- Custom cursor -->
+<div id="cursor">
+  <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <rect x="7" y="0" width="2" height="6" fill="#00e5ff"/>
+    <rect x="7" y="10" width="2" height="6" fill="#00e5ff"/>
+    <rect x="0" y="7" width="6" height="2" fill="#00e5ff"/>
+    <rect x="10" y="7" width="6" height="2" fill="#00e5ff"/>
+    <rect x="6" y="6" width="4" height="4" fill="rgba(0,229,255,0.3)"/>
+  </svg>
+</div>
+<div id="cursor-trail"></div>
+
+<!-- Konami easter egg -->
+<div id="konami-msg">
+  ⬆⬆⬇⬇⬅➡⬅➡ B A<br/>
+  CHEAT CODE ACTIVATED<br/>
+  <span style="color:var(--cyan);font-size:.35rem">unfortunately no extra lives in real life</span><br/>
+  <span style="color:var(--gray);font-size:.3rem">close this window to respawn</span><br/>
+  <button onclick="this.parentElement.classList.remove('show')" style="margin-top:1rem;background:none;border:1px solid var(--yellow);color:var(--yellow);font-family:var(--font-px);font-size:.35rem;padding:.4rem .8rem;cursor:pointer">[ OK ]</button>
+</div>
+
+<canvas id="starfield"></canvas>
+
+<nav>
+  <a href="#hero" class="nav-logo">MAYANK<span>ASTRA STUDIO ▸ SURAT</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#terminal-section">Terminal</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main id="main">
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-pre">PLAYER ONE HAS ENTERED</p>
+      <h1 class="hero-name">MAYANK<br/>MADHYANI</h1>
+      <p class="hero-brand">◈ ASTRA STUDIO · SURAT, INDIA ◈</p>
+      <p class="hero-tagline"><span id="cursor-tag"></span></p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn">▶ SEE PROJECTS</a>
+        <a href="#contact" class="btn btn-ghost">⊕ CONTACT</a>
+      </div>
+    </div>
+    <div class="hero-char">
+      <div class="char-sprite" id="hero-char">
+        <div class="char-aura"></div>
+        <!-- Pixel art Mayank: black hair, blue hoodie, gold chain, dark jeans, grey sneakers -->
+        <svg viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg" width="96" height="128" style="image-rendering:pixelated">
+          <!-- Hair -->
+          <rect x="7" y="0" width="10" height="3" fill="#1a0a00"/>
+          <rect x="6" y="1" width="12" height="3" fill="#1a0a00"/>
+          <rect x="5" y="2" width="2" height="2" fill="#1a0a00"/>
+          <rect x="17" y="2" width="2" height="2" fill="#1a0a00"/>
+          <!-- Face -->
+          <rect x="7" y="3" width="10" height="7" fill="#c8956c"/>
+          <rect x="6" y="4" width="2" height="5" fill="#c8956c"/>
+          <rect x="16" y="4" width="2" height="5" fill="#c8956c"/>
+          <!-- Eyes -->
+          <rect x="9" y="5" width="2" height="2" fill="#1a0a00"/>
+          <rect x="13" y="5" width="2" height="2" fill="#1a0a00"/>
+          <!-- Mouth smirk -->
+          <rect x="10" y="8" width="4" height="1" fill="#8b5a2b"/>
+          <rect x="13" y="7" width="1" height="1" fill="#8b5a2b"/>
+          <!-- Ear -->
+          <rect x="5" y="5" width="2" height="3" fill="#c8956c"/>
+          <rect x="17" y="5" width="2" height="3" fill="#c8956c"/>
+          <!-- Neck -->
+          <rect x="10" y="10" width="4" height="2" fill="#c8956c"/>
+          <!-- Gold chain -->
+          <rect x="8" y="12" width="8" height="1" fill="#ffd700"/>
+          <rect x="11" y="13" width="2" height="1" fill="#ffd700"/>
+          <!-- Hoodie body (light blue) -->
+          <rect x="5" y="12" width="14" height="11" fill="#5ba3c9"/>
+          <rect x="4" y="13" width="2" height="9" fill="#5ba3c9"/>
+          <rect x="18" y="13" width="2" height="9" fill="#5ba3c9"/>
+          <!-- BEAR text area on hoodie -->
+          <rect x="9" y="16" width="6" height="4" fill="#4a8fb5"/>
+          <!-- Hoodie pocket -->
+          <rect x="10" y="20" width="4" height="2" fill="#4a8fb5"/>
+          <!-- Arms -->
+          <rect x="3" y="13" width="2" height="8" fill="#5ba3c9"/>
+          <rect x="19" y="13" width="2" height="8" fill="#5ba3c9"/>
+          <!-- Hands -->
+          <rect x="2" y="20" width="3" height="3" fill="#c8956c"/>
+          <rect x="19" y="20" width="3" height="3" fill="#c8956c"/>
+          <!-- Dark jeans -->
+          <rect x="7" y="23" width="10" height="7" fill="#1e2a3a"/>
+          <rect x="7" y="23" width="4" height="7" fill="#1e2a3a"/>
+          <rect x="13" y="23" width="4" height="7" fill="#1a2535"/>
+          <rect x="11" y="23" width="2" height="7" fill="#263545"/>
+          <!-- Belt -->
+          <rect x="7" y="23" width="10" height="1" fill="#8b6914"/>
+          <!-- Legs lower -->
+          <rect x="7" y="28" width="4" height="3" fill="#1e2a3a"/>
+          <rect x="13" y="28" width="4" height="3" fill="#1a2535"/>
+          <!-- Sneakers (grey) -->
+          <rect x="6" y="30" width="6" height="2" fill="#888"/>
+          <rect x="12" y="30" width="6" height="2" fill="#888"/>
+          <rect x="5" y="31" width="2" height="1" fill="#666"/>
+          <rect x="17" y="31" width="2" height="1" fill="#666"/>
+        </svg>
+      </div>
+      <span class="char-label">MAYANK.EXE</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT ════════════════════════════ -->
+<section id="about">
+  <div class="wrap">
+    <p class="sec-label">PLAYER PROFILE</p>
+    <h2 class="sec-title">WHO IS THIS GUY?</h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-card">
+          <h3>THE LORE</h3>
+          <p>I'm Mayank — fresh out of Class 12 from Surat, Gujarat. Spent the last year figuring out that I like building things more than studying for exams about building things.</p>
+          <p>I code by vibes. Half my builds start as a random 2AM thought. The other half are just me wanting to learn how something works. Both are valid.</p>
+          <p>Under the ASTRA Studio banner I experiment with web, digital marketing, and whatever else catches my brain. The studio is less of a company and more of a self-imposed reason to be serious about side projects.</p>
+        </div>
+        <div class="about-card" style="margin-top:1rem">
+          <h3>COLLECTING SINCE 2012</h3>
+          <p>Hot Wheels &amp; Bburago die-cast collector. Over 100 cars. Yes, they're displayed properly. No, you can't borrow them.</p>
+          <p>Current grail: Bburago Ferrari 1:18 signature series. One day.</p>
+          <ul class="likes-list">
+            <li>⚡ HOT WHEELS</li>
+            <li>🏎 BBURAGO</li>
+            <li>🎮 MINECRAFT</li>
+            <li>🧱 LEGO</li>
+            <li>🎵 MUSIC</li>
+            <li>⚽ FOOTBALL</li>
+            <li>🦸 AVENGERS</li>
+            <li>🌌 SPACE</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Profile Panel -->
+      <div class="profile-panel reveal">
+        <div class="stat-row">
+          <span class="stat-key">NAME</span>
+          <span class="stat-val cyan">MAYANK MADHYANI</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">CLASS</span>
+          <span class="stat-val yellow">VIBE CODER LV.1</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">LOCATION</span>
+          <span class="stat-val">SURAT, GJ, IN 🇮🇳</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">STATUS</span>
+          <span class="stat-val green">ONLINE · BUILDING</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">HP</span>
+          <span class="stat-val">
+            <div class="hp-bar"><div class="hp-fill" id="hp-fill"></div></div>
+          </span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">SOCIAL ENERGY</span>
+          <span class="stat-val orange">██░░░░ LOW</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">HUSTLE STAT</span>
+          <span class="stat-val green">████░░ HIGH</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">COFFEE/DAY</span>
+          <span class="stat-val">TOO MANY</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">CATCHPHRASE</span>
+          <span class="stat-val cyan">"SHIP IT"</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">STUDIO</span>
+          <span class="stat-val">◈ ASTRA STUDIO</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">CARS COLLECTED</span>
+          <span class="stat-val yellow">100+</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-key">SLEEP SCHEDULE</span>
+          <span class="stat-val orange">UNDEFINED</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TERMINAL ════════════════════════════ -->
+<section id="terminal-section">
+  <div class="wrap">
+    <p class="sec-label">INTERACTIVE</p>
+    <h2 class="sec-title">MAYANK TERMINAL</h2>
+    <div class="terminal-wrap">
+      <div class="terminal-bar">
+        <div class="t-dot t-red"></div>
+        <div class="t-dot t-yellow"></div>
+        <div class="t-dot t-green"></div>
+        <span class="t-title">mayank@astra-studio:~$</span>
+      </div>
+      <div class="terminal-body" id="t-body">
+        <div class="t-line"><span class="t-prompt">▶</span> <span class="t-out">ASTRA STUDIO TERMINAL v1.0.0</span></div>
+        <div class="t-line"><span class="t-out">type <span class="t-out cyan">help</span> to see available commands</span></div>
+        <div class="t-line">&nbsp;</div>
+      </div>
+      <div class="t-input-row">
+        <span class="t-prompt-static">mayank@astra ~$</span>
+        <input type="text" id="t-input" placeholder="type a command..." autocomplete="off" spellcheck="false"/>
+      </div>
+      <p class="t-hint">TRY: help · about · skills · projects · contact · interests · hotwheels · clear</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SKILLS ════════════════════════════ -->
+<section id="skills">
+  <div class="wrap">
+    <p class="sec-label">LOADOUT</p>
+    <h2 class="sec-title">CURRENT SKILL TREE</h2>
+    <div class="skills-grid" id="skills-grid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PROJECTS ══════════════════════════ -->
+<section id="projects">
+  <div class="wrap">
+    <p class="sec-label">QUESTS COMPLETED</p>
+    <h2 class="sec-title">PROJECTS</h2>
+
+    <!-- Currently Building -->
+    <p style="font-family:var(--font-px);font-size:.4rem;color:var(--green);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem">
+      <span style="width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block;animation:pulse-green 1.5s ease infinite"></span>
+      CURRENTLY BUILDING
+    </p>
+    <div class="building-grid">
+      <div class="building-card">
+        <div class="b-label">ACTIVE</div>
+        <div class="b-name">THIS PORTFOLIO</div>
+        <div class="b-desc">yes, meta, i know. recursive self-improvement.</div>
+      </div>
+      <div class="building-card">
+        <div class="b-label">ACTIVE</div>
+        <div class="b-name">SHIVANSH INTERIOR WEB</div>
+        <div class="b-desc">proper website for the family business. doing it right.</div>
+      </div>
+      <div class="building-card">
+        <div class="b-label">QUEUED</div>
+        <div class="b-name">ASTRA STUDIO SITE</div>
+        <div class="b-desc">the real studio page. needs to be as weird as the name.</div>
+      </div>
+      <div class="building-card">
+        <div class="b-label">QUEUED</div>
+        <div class="b-name">DIGITAL MKT PLAYBOOK</div>
+        <div class="b-desc">documenting what actually works. not theory. real stuff.</div>
+      </div>
+    </div>
+
+    <div style="height:3rem"></div>
+
+    <!-- Main project -->
+    <div class="project-card reveal">
+      <div>
+        <span class="project-badge" style="color:var(--cyan);border-color:var(--cyan)">CLIENT WORK</span>
+        <h3 class="project-name">SHIVANSH INTERIOR</h3>
+        <p class="project-desc">
+          Interior design studio based in Surat. My first real client — and also my family, which removes the "fire the client" option from the table.
+          Handling digital presence: branding direction, social content strategy, and a proper website coming soon.
+          The goal: make their work look as premium online as it does IRL.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Digital Marketing</span>
+          <span class="tag">Brand Strategy</span>
+          <span class="tag">Web Design</span>
+          <span class="tag">Social Media</span>
+          <span class="tag">Content</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link" style="color:var(--gray);border-color:var(--gray)" onclick="return false" title="Coming soon">⧗ WEBSITE COMING SOON</a>
+          <a href="#" class="project-link" style="color:var(--purple);border-color:var(--purple)" onclick="return false" title="Coming soon">◈ INSTAGRAM COMING SOON</a>
+        </div>
+      </div>
+      <div class="project-char">
+        <!-- Mayank pointing/confident pose -->
+        <svg viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg" width="64" height="80" style="image-rendering:pixelated">
+          <rect x="7" y="0" width="10" height="3" fill="#1a0a00"/>
+          <rect x="6" y="1" width="12" height="3" fill="#1a0a00"/>
+          <rect x="7" y="3" width="10" height="7" fill="#c8956c"/>
+          <rect x="6" y="4" width="2" height="5" fill="#c8956c"/>
+          <rect x="16" y="4" width="2" height="5" fill="#c8956c"/>
+          <rect x="9" y="5" width="2" height="2" fill="#1a0a00"/>
+          <rect x="13" y="5" width="2" height="2" fill="#1a0a00"/>
+          <rect x="11" y="9" width="2" height="1" fill="#c8956c"/>
+          <!-- grin -->
+          <rect x="10" y="8" width="5" height="1" fill="#ff9944"/>
+          <rect x="10" y="10" width="4" height="2" fill="#c8956c"/>
+          <rect x="8" y="12" width="8" height="1" fill="#ffd700"/>
+          <rect x="5" y="12" width="14" height="11" fill="#5ba3c9"/>
+          <!-- arm pointing right -->
+          <rect x="19" y="13" width="4" height="2" fill="#5ba3c9"/>
+          <rect x="23" y="12" width="2" height="3" fill="#c8956c"/>
+          <rect x="3" y="13" width="2" height="9" fill="#5ba3c9"/>
+          <rect x="2" y="21" width="3" height="3" fill="#c8956c"/>
+          <rect x="7" y="23" width="10" height="9" fill="#1e2a3a"/>
+          <rect x="11" y="23" width="2" height="9" fill="#263545"/>
+          <rect x="7" y="23" width="10" height="1" fill="#8b6914"/>
+          <rect x="6" y="30" width="6" height="2" fill="#888"/>
+          <rect x="12" y="30" width="6" height="2" fill="#888"/>
+        </svg>
+        <span style="font-family:var(--font-px);font-size:.28rem;color:var(--cyan);text-align:center">TRUST<br/>THE<br/>PROCESS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ EDUCATION ══════════════════════════ -->
+<section id="education">
+  <div class="wrap">
+    <p class="sec-label">GRIND LOG</p>
+    <h2 class="sec-title">EDUCATION</h2>
+    <div class="edu-terminal">
+      <div class="edu-terminal-bar">
+        <span>◈ SCHOLAR_ENGLISH_ACADEMY.log</span>
+      </div>
+      <div class="edu-body">
+        <div class="edu-entry reveal">
+          <div class="edu-year">2024 — 2025</div>
+          <div class="edu-school">CLASS XII · SCIENCE STREAM</div>
+          <div class="edu-detail">Scholar English Academy, Surat, Gujarat</div>
+          <div class="edu-detail">PCM + Computer Science · Survived somehow</div>
+          <span class="edu-score">90% ↑</span>
+        </div>
+        <div class="edu-entry reveal">
+          <div class="edu-year">2022 — 2023</div>
+          <div class="edu-school">CLASS X · SECONDARY</div>
+          <div class="edu-detail">Scholar English Academy, Surat, Gujarat</div>
+          <div class="edu-detail">All subjects · Pre-vibe-coding era</div>
+          <span class="edu-score">80%</span>
+        </div>
+        <div class="achievement-bar reveal">
+          <span class="achievement-label">ACHIEVEMENTS:</span>
+          <div class="ach-progress"><div class="ach-fill"></div></div>
+          <span class="ach-text">LOADING_</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CONTACT ════════════════════════════ -->
+<section id="contact">
+  <div class="wrap">
+    <p class="sec-label">TRANSMISSION</p>
+    <h2 class="sec-title">SIGNAL FROM MAYANK</h2>
+    <div class="contact-grid">
+      <div class="signal-box reveal">
+        <div class="signal-rings">
+          <div class="signal-inner">📡</div>
+        </div>
+        <div class="signal-text">
+          BROADCASTING FROM<br/>
+          <span style="color:var(--white)">SURAT, GUJARAT</span><br/>
+          <span style="color:var(--gray);font-size:.3rem">signal strength: ████████ STRONG</span>
+        </div>
+        <div style="font-family:var(--font-px);font-size:.35rem;color:rgba(232,234,246,.4);text-align:center;line-height:2">
+          open to:<br/>
+          <span style="color:var(--cyan)">collabs</span> · <span style="color:var(--green)">freelance</span> · <span style="color:var(--yellow)">consulting</span><br/>
+          <span style="color:var(--purple)">random cool ideas</span>
+        </div>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:mayankmadhyani@gmail.com" class="contact-link">
+          <span class="c-icon">✉</span>
+          <span class="c-info">
+            <span class="c-label">EMAIL</span>
+            <span class="c-val">mayankmadhyani@gmail.com</span>
+          </span>
+        </a>
+        <a href="#" class="contact-link" onclick="return false">
+          <span class="c-icon">📸</span>
+          <span class="c-info">
+            <span class="c-label">INSTAGRAM</span>
+            <span class="c-val">@mayankmadhyani_ (coming soon)</span>
+          </span>
+        </a>
+        <a href="#" class="contact-link" onclick="return false">
+          <span class="c-icon">💼</span>
+          <span class="c-info">
+            <span class="c-label">LINKEDIN</span>
+            <span class="c-val">mayank-madhyani (coming soon)</span>
+          </span>
+        </a>
+        <div class="contact-link" style="border-color:rgba(57,255,20,.3);cursor:default">
+          <span class="c-icon">🎮</span>
+          <span class="c-info">
+            <span class="c-label" style="color:var(--green)">RESPONSE TIME</span>
+            <span class="c-val">usually fast · unless i'm in a minecraft world</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-char">
+    <svg viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg" width="48" height="64" style="image-rendering:pixelated;opacity:.4">
+      <rect x="7" y="0" width="10" height="3" fill="#1a0a00"/>
+      <rect x="6" y="1" width="12" height="3" fill="#1a0a00"/>
+      <rect x="7" y="3" width="10" height="7" fill="#c8956c"/>
+      <rect x="9" y="5" width="2" height="2" fill="#1a0a00"/>
+      <rect x="13" y="5" width="2" height="2" fill="#1a0a00"/>
+      <rect x="10" y="8" width="4" height="1" fill="#8b5a2b"/>
+      <rect x="10" y="10" width="4" height="2" fill="#c8956c"/>
+      <rect x="8" y="12" width="8" height="1" fill="#ffd700"/>
+      <rect x="5" y="12" width="14" height="11" fill="#5ba3c9"/>
+      <rect x="3" y="13" width="2" height="9" fill="#5ba3c9"/>
+      <rect x="19" y="13" width="2" height="9" fill="#5ba3c9"/>
+      <rect x="7" y="23" width="10" height="9" fill="#1e2a3a"/>
+      <rect x="6" y="30" width="6" height="2" fill="#888"/>
+      <rect x="12" y="30" width="6" height="2" fill="#888"/>
+    </svg>
+  </div>
+  <p>MAYANK MADHYANI · <span>ASTRA STUDIO</span> · SURAT, INDIA</p>
+  <p style="margin-top:.4rem">built with vibes &amp; too many late nights · <span>©2025</span></p>
+  <p style="margin-top:.4rem;font-size:.3rem;color:rgba(74,85,104,.5)">try: ↑↑↓↓←→←→BA · or type "hotwheels" in the terminal</p>
+</footer>
+
+<script>
+// ═══════════════════════════════ STARFIELD ════════════════════════════
+(function(){
+  const c=document.getElementById('starfield');
+  const ctx=c.getContext('2d');
+  const LAYERS=[.05,.12,.25];
+  let stars=[],scrollY=0,targetY=0,mouseX=0,mouseY=0,W=0,H=0;
+
+  function resize(){
+    W=c.width=window.innerWidth;
+    H=c.height=window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  function initStars(){
+    stars=[];
+    for(let l=0;l<LAYERS.length;l++){
+      for(let i=0;i<60;i++){
+        stars.push({
+          x:Math.random()*W,y:Math.random()*H*3,
+          r:l===0?.8:l===1?1.2:1.8,
+          layer:l,phase:Math.random()*Math.PI*2,
+          speed:Math.random()*.4+.1
+        });
+      }
+    }
+  }
+  initStars();
+
+  window.addEventListener('scroll',()=>{targetY=window.scrollY});
+  window.addEventListener('mousemove',e=>{
+    mouseX=(e.clientX/window.innerWidth-.5)*20;
+    mouseY=(e.clientY/window.innerHeight-.5)*20;
+  });
+
+  let t=0;
+  function draw(){
+    scrollY+=(targetY-scrollY)*.08;
+    ctx.clearRect(0,0,W,H);
+
+    // Deep space gradient
+    const grad=ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0,'#05050f');
+    grad.addColorStop(1,'#080820');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+
+    t+=.01;
+    for(const s of stars){
+      const parallax=LAYERS[s.layer];
+      const sx=((s.x+mouseX*parallax*2)%W+W)%W;
+      const sy=((s.y-scrollY*parallax+mouseY*parallax)%(H*3)+H*3)%(H*3);
+      if(sy<0||sy>H)continue;
+      const brightness=.4+.6*Math.abs(Math.sin(t*s.speed+s.phase));
+      ctx.globalAlpha=brightness;
+      ctx.fillStyle=s.layer===2?'#00e5ff':s.layer===1?'#a0c8ff':'#ffffff';
+      ctx.fillRect(Math.floor(sx),Math.floor(sy),s.r*2,s.r*2);
+    }
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ═══════════════════════════════ CURSOR ════════════════════════════
+(function(){
+  const cur=document.getElementById('cursor');
+  const trail=document.getElementById('cursor-trail');
+  const isMobile=/Android|iPhone|iPad|iPod|Touch/i.test(navigator.userAgent);
+  if(isMobile){cur.style.display='none';document.body.classList.add('mobile-cursor');return;}
+
+  const dots=[];
+  for(let i=0;i<8;i++){
+    const d=document.createElement('div');
+    d.className='trail-dot';
+    d.style.opacity=(1-i/8)*.5;
+    trail.appendChild(d);
+    dots.push({el:d,x:0,y:0});
+  }
+
+  let mx=0,my=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+  });
+
+  let positions=[];
+  function animTrail(){
+    positions.unshift({x:mx,y:my});
+    if(positions.length>dots.length)positions.length=dots.length;
+    dots.forEach((d,i)=>{
+      if(positions[i]){
+        d.el.style.left=positions[i].x+'px';
+        d.el.style.top=positions[i].y+'px';
+        d.el.style.opacity=(1-i/dots.length)*.4;
+      }
+    });
+    requestAnimationFrame(animTrail);
+  }
+  animTrail();
+})();
+
+// ═══════════════════════════════ TYPEWRITER ═══════════════════════════
+(function(){
+  const el=document.getElementById('cursor-tag');
+  const phrases=[
+    'Vibe Coder. Digital Marketer.',
+    'Class 12 done. Now figuring out the rest.',
+    'Building weird things under ASTRA Studio.',
+    'Still booting. Please wait...',
+    'Not a designer. Does it anyway.',
+    'Surat, Gujarat — on the map now.',
+  ];
+  let pi=0,ci=0,deleting=false;
+  function tick(){
+    const phrase=phrases[pi];
+    el.textContent=deleting?phrase.slice(0,ci--):phrase.slice(0,ci++);
+    if(!deleting&&ci>phrase.length){setTimeout(()=>{deleting=true;setTimeout(tick,40)},1800);return;}
+    if(deleting&&ci<0){ci=0;deleting=false;pi=(pi+1)%phrases.length;}
+    setTimeout(tick,deleting?40:80);
+  }
+  tick();
+})();
+
+// ═══════════════════════════════ SKILLS DATA ══════════════════════════
+(function(){
+  const SKILLS=[
+    {icon:'⌨',cat:'Vibe Coding',desc:'write code until it works then pretend i knew what i was doing',level:'EXPLORING',pips:1,color:'var(--cyan)'},
+    {icon:'🌐',cat:'Web Development',desc:'HTML/CSS/JS. React is next. currently using ctrl+z a lot',level:'LEARNING',pips:2,color:'var(--green)'},
+    {icon:'📣',cat:'Digital Marketing',desc:'SEO, social, content, analytics. actually know this one',level:'COMPETENT',pips:3,color:'var(--orange)'},
+    {icon:'🎨',cat:'Canva / Design',desc:'making things look decent without knowing design rules',level:'LEARNING',pips:2,color:'var(--purple)'},
+    {icon:'📊',cat:'Meta Ads',desc:'ran real campaigns. some worked. learned from the ones that didn\'t',level:'LEARNING',pips:2,color:'var(--yellow)'},
+    {icon:'🤖',cat:'AI Tools',desc:'GPT, Claude, Midjourney — using them to build faster, not cheat',level:'EXPLORING',pips:1,color:'var(--cyan)'},
+  ];
+  const grid=document.getElementById('skills-grid');
+  SKILLS.forEach(s=>{
+    const card=document.createElement('div');
+    card.className='skill-card reveal';
+    const pipsHtml=Array.from({length:5},(_,i)=>`<div class="pip${i<s.pips?' on':''}" style="border-color:${s.color};${i<s.pips?'background:'+s.color:''}"></div>`).join('');
+    card.innerHTML=`
+      <div class="skill-head">
+        <span class="skill-icon">${s.icon}</span>
+        <span class="skill-cat">${s.cat}</span>
+      </div>
+      <p class="skill-desc">${s.desc}</p>
+      <div class="skill-meta">
+        <span class="skill-level" style="color:${s.color}">${s.level}</span>
+        <div class="pips">${pipsHtml}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+})();
+
+// ═══════════════════════════════ TERMINAL ════════════════════════════
+(function(){
+  const body=document.getElementById('t-body');
+  const input=document.getElementById('t-input');
+  const history=[];
+  let histIdx=-1;
+
+  const COMMANDS={
+    help:{fn:()=>[
+      {c:'cyan',t:'AVAILABLE COMMANDS:'},
+      {c:'',t:'  about      — who is this guy'},
+      {c:'',t:'  skills     — what can he do'},
+      {c:'',t:'  projects   — what has he built'},
+      {c:'',t:'  interests  — what he\'s into'},
+      {c:'',t:'  contact    — how to reach him'},
+      {c:'',t:'  hotwheels  — his passion project'},
+      {c:'',t:'  minecraft  — his spiritual home'},
+      {c:'',t:'  astra      — the studio'},
+      {c:'',t:'  clear      — wipe the terminal'},
+      {c:'gray',t:''},
+      {c:'gray',t:'  tip: try saying something mean to the terminal'},
+    ]},
+    about:{fn:()=>[
+      {c:'cyan',t:'MAYANK MADHYANI // ASTRA STUDIO'},
+      {c:'',t:'> fresh out of class 12 from surat, gujarat'},
+      {c:'',t:'> vibe coder — learns by building, ships by instinct'},
+      {c:'',t:'> runs ASTRA Studio: a one-person experiment lab'},
+      {c:'',t:'> digital marketer by skill, tinkerer by nature'},
+      {c:'yellow',t:'> currently figuring out what comes next'},
+      {c:'',t:'> (plot twist: nobody knows, and that\'s fine)'},
+    ]},
+    skills:{fn:()=>[
+      {c:'cyan',t:'SKILL TREE:'},
+      {c:'green',t:'  ██████░░░░  Digital Marketing   [COMPETENT]'},
+      {c:'cyan',t:'  ████░░░░░░  Web Dev (HTML/CSS)  [LEARNING]'},
+      {c:'yellow',t:'  ████░░░░░░  Meta Ads            [LEARNING]'},
+      {c:'purple',t:'  ████░░░░░░  Design (Canva)      [LEARNING]'},
+      {c:'cyan',t:'  ██░░░░░░░░  Vibe Coding         [EXPLORING]'},
+      {c:'cyan',t:'  ██░░░░░░░░  AI Tools            [EXPLORING]'},
+      {c:'gray',t:'  ..........  Everything Else     [TODO]'},
+    ]},
+    projects:{fn:()=>[
+      {c:'cyan',t:'PROJECTS:'},
+      {c:'green',t:'  [ACTIVE] SHIVANSH INTERIOR'},
+      {c:'',t:'  interior design studio in surat.'},
+      {c:'',t:'  handling digital presence & strategy.'},
+      {c:'',t:'  website: coming soon'},
+      {c:'',t:'  instagram: coming soon'},
+      {c:'yellow',t:''},
+      {c:'yellow',t:'  [QUEUED] a few more things in progress.'},
+      {c:'gray',t:'  details drop when they\'re ready.'},
+    ]},
+    interests:{fn:()=>[
+      {c:'cyan',t:'INTERESTS.json:'},
+      {c:'orange',t:'  🏎 Hot Wheels & Bburago — 100+ cars collected'},
+      {c:'green',t:'  🎮 Minecraft — 10+ years. no sign of stopping'},
+      {c:'cyan',t:'  🦸 Marvel / Avengers — endgame still hits different'},
+      {c:'yellow',t:'  ⚽ Football — play it, watch it, argue about it'},
+      {c:'purple',t:'  🌌 Space — the real one, not just the aesthetic'},
+      {c:'',t:'  🎵 Music — all genres. depends on the hour'},
+      {c:'',t:'  🧱 Lego — yes, still. no, not sorry'},
+    ]},
+    contact:{fn:()=>[
+      {c:'cyan',t:'SIGNAL FROM MAYANK:'},
+      {c:'',t:'  📧  mayankmadhyani@gmail.com'},
+      {c:'gray',t:'  📸  @mayankmadhyani_ (coming soon)'},
+      {c:'gray',t:'  💼  linkedin (coming soon)'},
+      {c:'green',t:''},
+      {c:'green',t:'  response time: fast-ish'},
+      {c:'gray',t:'  unless i\'m in a minecraft world'},
+    ]},
+    hotwheels:{fn:()=>[
+      {c:'orange',t:'🏎 HOT WHEELS & BBURAGO COLLECTION'},
+      {c:'',t:'  total cars: 100+'},
+      {c:'',t:'  started: probably 2012'},
+      {c:'',t:'  condition: mint. they are NOT toys.'},
+      {c:'yellow',t:'  current grail: Bburago Ferrari 1:18 signature'},
+      {c:'',t:'  display: yes, properly, on shelves'},
+      {c:'gray',t:'  loan policy: no.'},
+      {c:'orange',t:'  this is a lifestyle, not a hobby.'},
+    ]},
+    minecraft:{fn:()=>[
+      {c:'green',t:'⛏ MINECRAFT STATUS:'},
+      {c:'',t:'  first played: around 2014'},
+      {c:'',t:'  mode: survival, always survival'},
+      {c:'green',t:'  hours: uncountable (and we don\'t count them)'},
+      {c:'',t:'  current world: classified'},
+      {c:'yellow',t:'  opinion: still the best game ever made.'},
+      {c:'gray',t:'  no, i will not be taking questions.'},
+    ]},
+    astra:{fn:()=>[
+      {c:'cyan',t:'◈ ASTRA STUDIO'},
+      {c:'',t:'  one-person experiment lab.'},
+      {c:'',t:'  based in surat. operating everywhere.'},
+      {c:'',t:'  focus: web, marketing, weird ideas.'},
+      {c:'',t:'  status: active, slightly chaotic.'},
+      {c:'yellow',t:'  mission: build things that matter (or at least'),
+      {c:'yellow',t:'           look cool while breaking)'},
+    ]},
+    clear:{fn:()=>{
+      body.innerHTML='<div class="t-line"><span class="t-out cyan">terminal cleared. fresh start.</span></div>';
+      return null;
+    }},
+  };
+
+  const ROASTS=[
+    'i\'ve heard worse. barely.',
+    'wow. typing that must have taken so much out of you.',
+    'noted. not changing anything though.',
+    'my hp is too high for this to affect me.',
+    'cool. anyway, type help for actual commands.',
+    'sir/ma\'am this is a portfolio terminal not a therapy session',
+  ];
+  let roastIdx=0;
+
+  function print(lines){
+    lines.forEach(l=>{
+      const div=document.createElement('div');
+      div.className='t-line';
+      div.innerHTML=`<span class="t-out${l.c?' '+l.c:''}">${l.t||'&nbsp;'}</span>`;
+      body.appendChild(div);
+    });
+    body.scrollTop=body.scrollHeight;
+  }
+
+  function run(cmd){
+    cmd=cmd.trim().toLowerCase();
+    if(!cmd)return;
+
+    // echo command
+    const echo=document.createElement('div');
+    echo.className='t-line';
+    echo.innerHTML=`<span class="t-prompt">▶</span> <span class="t-cmd">${cmd}</span>`;
+    body.appendChild(echo);
+
+    if(COMMANDS[cmd]){
+      const result=COMMANDS[cmd].fn();
+      if(result)print(result);
+    } else {
+      // roast unknown inputs
+      const roast=ROASTS[roastIdx%ROASTS.length];
+      roastIdx++;
+      print([{c:'orange',t:`"${cmd}" — ${roast}`}]);
+    }
+    body.scrollTop=body.scrollHeight;
+  }
+
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      const v=input.value;
+      history.unshift(v);
+      histIdx=-1;
+      input.value='';
+      run(v);
+    } else if(e.key==='ArrowUp'){
+      e.preventDefault();
+      histIdx=Math.min(histIdx+1,history.length-1);
+      input.value=history[histIdx]||'';
+    } else if(e.key==='ArrowDown'){
+      e.preventDefault();
+      histIdx=Math.max(histIdx-1,-1);
+      input.value=histIdx<0?'':history[histIdx];
+    }
+  });
+
+  // Focus terminal on click
+  document.querySelector('.terminal-wrap').addEventListener('click',()=>input.focus());
+})();
+
+// ═══════════════════════════════ SCROLL REVEAL ═══════════════════════
+(function(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed')});
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // HP bar fill on profile panel visible
+  const hpFill=document.getElementById('hp-fill');
+  const hpObs=new IntersectionObserver((entries)=>{
+    if(entries[0].isIntersecting){
+      setTimeout(()=>{hpFill.style.width='78%'},300);
+    }
+  },{threshold:.3});
+  hpObs.observe(hpFill);
+})();
+
+// ═══════════════════════════════ NAV ═════════════════════════════════
+(function(){
+  const btn=document.getElementById('hamburger');
+  const links=document.getElementById('nav-links');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+})();
+
+// ═══════════════════════════════ KONAMI CODE ══════════════════════════
+(function(){
+  const seq=[38,38,40,40,37,39,37,39,66,65];
+  let idx=0;
+  document.addEventListener('keydown',e=>{
+    if(e.keyCode===seq[idx]){idx++;if(idx===seq.length){document.getElementById('konami-msg').classList.add('show');idx=0;}}
+    else idx=0;
+  });
+})();
+
+// ═══════════════════════════════ TITLE EASTER EGG ═══════════════════
+(function(){
+  const orig=document.title;
+  document.addEventListener('visibilitychange',()=>{
+    document.title=document.hidden?'⏸ hey come back':'◈ '+orig;
+  });
+})();
+</script>
+</body>
 </html>
