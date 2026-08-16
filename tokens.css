@@ -1,0 +1,71 @@
+/* ============================================================
+   ASTRA STUDIO — DESIGN TOKENS
+   Modify here to retheme the entire site.
+   ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --bg-void: #05050f;
+  --bg-deep: #080818;
+  --bg-surface: #0d0d22;
+  --bg-elevated: #12122e;
+  --bg-card: #0f0f28;
+
+  /* Brand accent palette */
+  --cyan:     #00e5ff;
+  --cyan-dim: #00b8cc;
+  --green:    #39ff14;
+  --green-dim:#2acc0f;
+  --orange:   #ff8c00;
+  --yellow:   #ffd700;
+  --purple:   #bf5fff;
+  --red:      #ff3c3c;
+
+  /* Neutrals */
+  --white:      #f0f0ff;
+  --white-dim:  #a0a0c0;
+  --gray:       #404060;
+  --gray-light: #606080;
+
+  /* Pixel border style */
+  --border-px: 2px solid var(--cyan);
+  --border-px-dim: 2px solid var(--gray);
+
+  /* Fonts */
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --font-body:  'Space Mono', 'Courier New', monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Pixel sizes */
+  --px: 2px;
+  --px2: 4px;
+  --px4: 8px;
+
+  /* Animation speeds */
+  --dur-fast:   120ms;
+  --dur-normal: 280ms;
+  --dur-slow:   600ms;
+
+  /* CRT effect */
+  --scanline-opacity: 0.04;
+  --glow-cyan: 0 0 8px rgba(0,229,255,0.5), 0 0 20px rgba(0,229,255,0.2);
+  --glow-green: 0 0 8px rgba(57,255,20,0.5), 0 0 20px rgba(57,255,20,0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast:   0ms;
+    --dur-normal: 0ms;
+    --dur-slow:   0ms;
+  }
+}

@@ -1,0 +1,207 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ── Pixel planets ───────────────────────────────────── */
+.pixel-planet {
+  position: absolute;
+  width: var(--p-size);
+  height: var(--p-size);
+  background: var(--p-color);
+  image-rendering: pixelated;
+  animation: float 6s ease-in-out infinite;
+  /* chunky pixel circle via clip-path */
+  clip-path: polygon(
+    25% 0%, 75% 0%,
+    100% 25%, 100% 75%,
+    75% 100%, 25% 100%,
+    0% 75%, 0% 25%
+  );
+  opacity: 0.7;
+}
+
+.pixel-planet::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 30%;
+  height: 15%;
+  background: rgba(255,255,255,0.15);
+  clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
+}
+
+/* ── Spaceship ───────────────────────────────────────── */
+.pixel-ship {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  animation: float 4s ease-in-out infinite, drift 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.pixel-ship__art {
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  white-space: pre;
+}
+
+/* ── Content ─────────────────────────────────────────── */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding-top: 80px; /* nav clearance */
+}
+
+.hero__sys-line {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--green);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.hero__sys-blink {
+  animation: blink 1.2s step-end infinite;
+  color: var(--green);
+}
+
+.hero__name-label {
+  font-size: 0.45rem;
+  color: var(--gray-light);
+  letter-spacing: 0.2em;
+}
+
+.hero__name {
+  font-family: var(--font-pixel);
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  line-height: 1.2;
+  color: var(--white);
+  text-shadow: 0 0 40px rgba(0,229,255,0.2);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+
+.hero__brand {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-shadow: var(--glow-cyan);
+  margin-bottom: var(--space-6);
+}
+
+.hero__tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  color: var(--white-dim);
+  max-width: 540px;
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+.hero__sub {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: var(--gray-light);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-7);
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+
+.btn-pixel--ghost {
+  border-color: var(--gray);
+  color: var(--white-dim);
+}
+
+.btn-pixel--ghost:hover {
+  background: var(--white-dim);
+  color: var(--bg-void);
+  border-color: var(--white-dim);
+  box-shadow: 0 0 8px rgba(160,160,192,0.4);
+}
+
+.hero__coords {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--gray);
+  letter-spacing: 0.08em;
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.hero__coords-sep { color: var(--cyan); }
+
+/* ── Scroll hint ─────────────────────────────────────── */
+.hero__scroll-hint {
+  position: absolute;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  animation: float 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+.hero__scroll-arr {
+  font-size: 1.2rem;
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.hero__scroll-text {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
+  color: var(--gray-light);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+/* ── Bottom fade ─────────────────────────────────────── */
+.hero__fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg-void));
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .pixel-ship { display: none; }
+  .pixel-planet:not(:first-of-type) { display: none; }
+  .hero__name { font-size: clamp(1.6rem, 10vw, 2.4rem); }
+  .hero__sys-line { font-size: 0.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-planet,
+  .pixel-ship,
+  .hero__scroll-hint { animation: none; }
+}
